@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js05</title>
+</head>
+<body>
+
+
+</body>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="jquery-ui.custom.js"></script>
+<script>
+    // 엄격한 키워드 최상단에 들어간다  스트릭트 모드
+    'use strict';
+
+    // this keyword this는 일반적으로 3,4가지의 뜻을 가지고 있다
+
+    //1. 그냥 쓰거나 일반 함수에서 쓰면 window 객체를 호출한다.
+    // stirct 모드에서는 일반함수에서 언디파인이 뜬다.
+
+    console.log(this);
+    fnc();
+    function fnc(){
+        console.log(this);
+    }
+
+    // 2. object 안에서 this
+    // 오브젝트 안에 함수 안에서 this는 그 함수(메서드)를 가지고 있는 오브젝트를 뜻함
+    var obj = {
+        data : 'son',
+        fnc : function (){
+            //console.log('안녕');
+            console.log(this);
+        }
+    }
+    console.log(obj.data);
+    obj.fnc();
+
+    var obj2 = {
+        data : {
+            func : function (){
+                console.log(this);
+            }
+        }
+    }
+    obj2.data.func();
+
+    // 여기서의 this는 무조건 최상위 window를 가리킴
+    var obj3 = {
+        data : {
+            func :() => {
+                console.log(this);
+            }
+        }
+    }
+    obj3.data.func();
+
+
+    function fc(){
+        console.log(this);
+    }
+    fc();
+    // window는 전역공간이며 global object 전역변수 보관소
+    window.fc();
+
+</script>
